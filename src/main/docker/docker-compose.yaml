@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  postgres:
+    restart: always
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=passw
+      - POSTGRES_DB=postgres
+      - POSTGRES_PORT=5432
+    ports:
+      - '5432:5432'
+    image: postgres:15.3-alpine
+    volumes:
+      - ../postgres:/docker-entrypoint-initdb.d
+      # - ../postgres/pg_data:/var/lib/postgresql/data
+  # auth:
+  #   restart: always
+  #   container_name: auth
+  #   build:
+  #     context: ../../../
+  #     dockerfile: src/main/java/ru/hse/hw4/auth/Dockerfile
+  #   ports:
+  #     - '8000:8080'
